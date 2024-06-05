@@ -3,7 +3,7 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
     const resultText = document.getElementById('resultText');
 
     if (fileInput.files.length === 0) {
-        alert('Please select a file first.');
+        resultText.value = "Please select a file to upload.";
         return;
     }
 
@@ -12,19 +12,19 @@ document.getElementById('uploadButton').addEventListener('click', async () => {
     formData.append('file', file);
 
     try {
-        const response = await fetch('https://api.your-ocr-service.com/parse', {
+        const response = await fetch('http://localhost:8000/upload/', {
             method: 'POST',
             body: formData
         });
 
         if (!response.ok) {
-            throw new Error('Network response was not ok');
+            throw new Error(`HTTP error! status: ${response.status}`);
         }
 
-        const result = await response.json();
-        resultText.value = result.text;
+        const data = await response.json();
+        console.log('Received data:', data);
+        resultText.value = data.text.join('\n');
     } catch (error) {
-        console.error('Error:', error);
-        resultText.value = 'An error occurred while processing the file.';
+        resultText.value = `Error: ${error.message}`;
     }
 });

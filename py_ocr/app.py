@@ -3,8 +3,17 @@ from fastapi.responses import JSONResponse
 import shutil
 import os
 from paddleocr import PaddleOCR
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI()
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # 可以根据需求指定特定的域名
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 UPLOAD_FOLDER = "uploads"
 ocr = PaddleOCR(use_angle_cls=True, lang='ch')
