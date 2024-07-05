@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+</head>
+<body>
+    <h2>Register</h2>
+    <form id="registerForm">
+        <label for="reg_username">Username:</label><br>
+        <input type="text" id="reg_username" name="username"><br>
+        <label for="reg_password">Password:</label><br>
+        <input type="password" id="reg_password" name="password"><br>
+        <label for="reg_referral_code">Referral Code:</label><br>
+        <input type="text" id="reg_referral_code" name="referral_code"><br><br>
+        <input type="submit" value="Register">
+    </form>
+    <br>
+    <button onclick="window.location.href='login.html'">Back to Login</button>
+
+    <script>
+        document.getElementById('registerForm').onsubmit = async function (event) {
+            event.preventDefault();
+            const username = document.getElementById('reg_username').value;
+            const password = document.getElementById('reg_password').value;
+            const referralCode = document.getElementById('reg_referral_code').value;
+            
+          const response = await fetch('/api/register', {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({ username, password, referral_code: referralCode })
+        });
+            
+            const result = await response.json();
+            alert(result.message);
+        };
+    </script>
+</body>
+</html>
