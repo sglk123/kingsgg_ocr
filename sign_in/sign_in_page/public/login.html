@@ -5,14 +5,16 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Login</title>
     <style>
-        body {
+        body, html {
+            height: 100%; /* Ensure full height */
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
             display: flex;
+            flex-direction: column; /* Vertical stacking */
             justify-content: center;
             align-items: center;
-            height: 100vh;
-            margin: 0;
             background-color: #f0f0f0;
-            font-family: Arial, sans-serif;
         }
         .container {
             text-align: center;
@@ -20,10 +22,10 @@
             padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            width: 50%; /* 拉长 container */
+            width: 50%;
         }
         .logo img {
-            width: 100%; /* 拉长 logo */
+            width: 100%;
             height: auto;
         }
         form {
@@ -59,6 +61,15 @@
         button:hover {
             background-color: #5a6268;
         }
+        .footer {
+            width: 100%;
+            position: absolute; /* Positioned at the bottom */
+            bottom: 0;
+            text-align: center;
+            padding: 10px 0;
+            font-size: 0.8em;
+            background-color: #f0f0f0; /* Matching body background */
+        }
     </style>
 </head>
 <body>
@@ -76,6 +87,11 @@
         </form>
         <br>
         <button onclick="window.location.href='register.html'">Register</button>
+    </div>
+
+    <div class="footer">
+        Copyright© 2023 南京水滴科技有限公司 版权所有
+        <a href="https://beian.miit.gov.cn" target="_blank">苏ICP备2024097140号</a>
     </div>
 
     <script>
